@@ -1,0 +1,23 @@
+
+@import "scrollbar";
+
+.box-shadow {
+    box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.2);
+}
+
+table {
+    thead {
+        font-size: 0.9rem;
+    }
+    tbody {
+        font-size: 0.85rem;
+    }
+}
+
+.block {
+    margin: 20px 0;
+}
+
+.block--hidden {
+    display: none;
+}
