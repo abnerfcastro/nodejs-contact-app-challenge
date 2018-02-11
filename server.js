@@ -59,6 +59,8 @@ const server = http.createServer((req, res) => {
                 // Treat .svg files with correct Content-Type
                 if (/.*.svg$/.test(path))
                     res.setHeader('Content-Type', 'image/svg+xml');
+                else if (/.*.ico$/.test(path))
+                    res.setHeader('Content-Type', 'image/x-icon');
                 
                 res.setHeader('Content-Length', stat.size);
 
