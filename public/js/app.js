@@ -7,43 +7,60 @@
         // The DOM is ready!
         $('.js-hide-on-load').hide();
 
-        $.ajax({
-            type: 'GET',
-            url: '/api/contact',
-            success: function (contacts) {
-                const $contacts = $('#contacts__table > tbody:last-child');
-                $.each(contacts, (i, contact) => {
-                    // HTML string for table row
-                    let innerHtml = `<th scope="row">${contact.id}</th>`;
+        function updateContactsTable() {
+            $.ajax({
+                type: 'GET',
+                url: '/api/contact',
+                success: function (contacts) {
+                    // Empty children elements
+                    $('#contacts__table > tbody').empty();
                     
-                    // Iterate through contact properties, excluding id, and append to HTML string
-                    for (let [key, value] of Object.entries(contact).slice(1))
-                        innerHtml += `<td>${value}</td>`
-                    
-                    $contacts.append(`<tr>${innerHtml}</tr>`);
-                });
-            }
-        });
+                    const $contacts = $('#contacts__table > tbody:last-child');
+                    $.each(contacts, (i, contact) => {
+                        // HTML string for table row
+                        let innerHtml = `<th scope="row">${contact.id}</th>`;
+                        
+                        // Iterate through contact properties, excluding id, and append to HTML string
+                        for (let [key, value] of Object.entries(contact).slice(1))
+                            innerHtml += `<td>${value}</td>`
+                        
+                        $contacts.append(`<tr>${innerHtml}</tr>`);
+                    });
+                }
+            });
+        }
+        
+        // Update table on first load
+        updateContactsTable.call(this);
 
         $('#add__contact__btn').click(function () {            
             $('#contacts__table').fadeToggle(function () {
                 $('#add__contact__section').fadeToggle();
             });
+            $(this).toggleClass('disabled');
         });
 
         $('#add__contact__form')
             .find('[name="phone"]').mask('999-999-9999');
+            
+        $('#add__contact__form > button[type="button"]').click(switchBackTransition);
+        
+        function switchBackTransition() {
+            $('#add__contact__section').slideUp(300, function () {
+                $('#contacts__table').fadeToggle();
+                $('#add__contact__btn').toggleClass('disabled');
+            });
+        }
 
         $('#add__contact__form').submit(function () {
             let url = $(this).attr('action');
             let data = $(this).serialize();
 
-            console.log(data);
-
             // POST api/contact
             $.post(url, data)
             .done(function () {
-                console.log('success');
+                switchBackTransition();
+                updateContactsTable();
             })
             .fail(function () {
                 $('#add__contact__alert').slideDown();

@@ -20,7 +20,7 @@
 
 <body>
     <!-- Image and text -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light box-shadow">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light box-shadow">
         <a class="navbar-brand" href="/">
             <img src="/img/phone-book.svg" width="30" height="30" class="d-inline-block align-top" alt=""> Contactpedia
         </a>
@@ -31,7 +31,7 @@
         <div class="collapse navbar-collapse justify-content-lg-end" id="navbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <button id="add__contact__btn" class="btn btn-primary" href="#">New Contact</button>
+                    <a id="add__contact__btn" class="btn btn-primary" role="button" href="javascript:void()">New Contact</a>
                 </li>
             </ul>
         </div>
@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary px-4">Save</button>
-                <button type="button" class="btn btn-outline-danger px-4">Cancel</button>
+                <button id="cancel__btn__form" type="button" class="btn btn-outline-danger px-4">Cancel</button>
             </form>
         </div>
     </section>
@@ -113,7 +113,7 @@
 
 
     <!-- CDN Files -->
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
