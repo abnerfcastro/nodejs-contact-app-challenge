@@ -42,7 +42,8 @@
 
         $('#add__contact__form')
             .find('[name="phone"]').mask('999-999-9999');
-            
+
+        // 'Cancel' button onclick event
         $('#add__contact__form > button[type="button"]').click(switchBackTransition);
         
         function switchBackTransition() {
